@@ -1,0 +1,19 @@
+{
+    "name": "codestream/external-business",
+    "description": "Boilerplate package for creating other packages.",
+    "type": "project",
+    "require": {
+		"php": ">=5.4",
+        "stevenmaguire/oauth2-yelp": "^0.1.0",
+        "skagarwal/google-places-api": "^1.1",
+        "stevenmaguire/yelp-php": "^2.0"
+    },
+	"require-dev": {
+		"phpunit/phpunit": "5.2.*"
+    },
+	"autoload": {
+        "psr-4": {
+            "Buonzz\\Template\\": "src/"
+        }
+    }
+}
