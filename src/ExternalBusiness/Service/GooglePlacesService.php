@@ -73,7 +73,7 @@ class GooglePlacesService
                 $business->setDisplayPhone($result['result']['formatted_phone_number']);
                 $business->setLatitude($result['result']['geometry']['location']['lat']);
                 $business->setLongitude($result['result']['geometry']['location']['lng']);
-                $business->setWebsite($result['result']['website']);
+                $business->setWebsite($this->getWebsite($result));
                 $business->setPrice(3); //todo
                 $business->setPhotos($this->getPhotos($result));
 
@@ -157,6 +157,10 @@ class GooglePlacesService
             $photos[] = "//maps.googleapis.com/maps/api/place/photo?photoreference=$photo_reference&key=$this->key";
         }
         return $photos;
+    }
+
+    private function getWebsite($result) {
+        return isset($result['result']['website']) ? $result['result']['website'] : null;
     }
 
 }
