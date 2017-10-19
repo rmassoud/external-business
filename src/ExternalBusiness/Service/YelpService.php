@@ -1,7 +1,7 @@
-<?php namespace Codestream\ExternalBusiness\Service;
+<?php namespace ExternalBusiness\Service;
 
-use Codestream\ExternalBusiness\Model\ExternalBusiness;
-use Codestream\ExternalBusiness\Model\ExternalBusinessReview;
+use ExternalBusiness\Model\ExternalBusiness;
+use ExternalBusiness\Model\ExternalBusinessReview;
 use Stevenmaguire\OAuth2\Client\Provider\Yelp;
 use Stevenmaguire\Yelp\Exception\HttpException;
 use Stevenmaguire\Yelp\v3\Client;

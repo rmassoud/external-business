@@ -1,4 +1,4 @@
-<?php namespace Codestream\ExternalBusiness\Model;
+<?php namespace ExternalBusiness\Model;
 
 class ExternalBusiness
 {

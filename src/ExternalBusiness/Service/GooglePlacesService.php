@@ -1,7 +1,7 @@
-<?php namespace Codestream\ExternalBusiness\Service;
+<?php namespace ExternalBusiness\Service;
 
-use Codestream\ExternalBusiness\Model\ExternalBusiness;
-use Codestream\ExternalBusiness\Model\ExternalBusinessReview;
+use ExternalBusiness\Model\ExternalBusiness;
+use ExternalBusiness\Model\ExternalBusinessReview;
 use SKAgarwal\GoogleApi\PlacesApi;
 
 class GooglePlacesService
