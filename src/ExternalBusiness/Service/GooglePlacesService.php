@@ -4,7 +4,7 @@ use Codestream\ExternalBusiness\Model\ExternalBusiness;
 use Codestream\ExternalBusiness\Model\ExternalBusinessReview;
 use SKAgarwal\GoogleApi\PlacesApi;
 
-class GooglePlacesService implements ProviderServiceInterface
+class GooglePlacesService
 {
 
     /**
