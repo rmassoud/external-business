@@ -24,9 +24,13 @@ class GooglePlacesService
     private $google_places;
 
     private $key = 'AIzaSyAocvDCgiUaD9078kspYreZf0aMQSY9A3E';
+    private $include_reviews;
 
-    public function __construct()
+    public function __construct($key, $include_reviews = FALSE)
     {
+        $this->key = $key;
+        $this->include_reviews = $include_reviews;
+
         if($this->google_places == null) {
             $this->google_places = new PlacesApi($this->key);
         }
@@ -60,22 +64,30 @@ class GooglePlacesService
                 $business->setId($uuid);
                 $business->setProviderName($this->getProviderName());
                 $business->setData($result);
-                $business->setName($result['result']['name']);
+                $business->setName(preg_replace('/[\x00-\x1F\x7F-\xFF]/', '', $result['result']['name'])); // Remove unicode characters
                 $business->setOpeningHours( $this->getOpeningHours($result));
-                $business->setOpenNow($result['result']['opening_hours']['open_now']);
-                $business->setReviews( $this->getReviews($result));
+                $business->setOpenNow($this->getOpenNow($result));
+                $business->setReviews( $this->include_reviews ? $this->getReviews($result) : null);
                 $business->setState($this->getAddressComponent($result, 'administrative_area_level_1'));
                 $business->setCity($this->getAddressComponent($result, 'locality'));
                 $business->setFormattedAddress( $this->getFormattedAddress($result) );
                 $business->setCategories($this->getTags($result));
-                $business->setRating($result['result']['rating']);
-                $business->setPhone($result['result']['international_phone_number']);
-                $business->setDisplayPhone($result['result']['formatted_phone_number']);
+                $business->setRating(
+                    isset($result['result']['rating']) ? $result['result']['rating']: null
+                );
+                $business->setPhone(
+                    isset($result['result']['international_phone_number']) ? $result['result']['international_phone_number'] : null
+                );
+                $business->setDisplayPhone(
+                    isset($result['result']['formatted_phone_number']) ? $result['result']['formatted_phone_number'] :null
+                );
                 $business->setLatitude($result['result']['geometry']['location']['lat']);
                 $business->setLongitude($result['result']['geometry']['location']['lng']);
-                $business->setWebsite($this->getWebsite($result));
-                $business->setPrice(3); //todo
+                $business->setWebsite(
+                    isset($result['result']['website']) ? $result['result']['website'] : null
+                );
                 $business->setPhotos($this->getPhotos($result));
+                $business->setUrl($result['result']['url']);
 
                 return $business;
             }
@@ -85,32 +97,38 @@ class GooglePlacesService
     }
 
     private function getOpeningHours($result) {
-        if($result['result']['opening_hours']) {
-            foreach($this->dayMap as $dayIndex => $day) {
-                $openingHours[$dayIndex] = [
-                    'day_name' => $day,
-                ];
-                foreach( $periods = $result['result']['opening_hours']['periods'] as $key => $period ) {
-                    if($period['close']['day'] == $dayIndex) {
-                        $openingHours[$dayIndex]['periods'][] = [
-                            'open_time' => date_format(date_create_from_format ("Hi", $period['open']['time']), 'h:ia'),
-                            'close_time' => date_format(date_create_from_format ("Hi", $period['close']['time']), 'h:ia'),
-                        ];
-                    }
+        if(!isset($result['result']['opening_hours'])) {
+            return null;
+        }
+
+        foreach($this->dayMap as $dayIndex => $day) {
+            $openingHours[$dayIndex] = [
+                'day_name' => $day,
+            ];
+            foreach( $periods = $result['result']['opening_hours']['periods'] as $key => $period ) {
+                if( isset($period['close']) && isset($period['open_time']) && $period['close']['day'] == $dayIndex) {
+                    $openingHours[$dayIndex]['periods'][] = [
+                        'open_time' => date_format(date_create_from_format ("Hi", $period['open']['time']), 'h:ia'),
+                        'close_time' => date_format(date_create_from_format ("Hi", $period['close']['time']), 'h:ia'),
+                    ];
                 }
             }
-            return $openingHours;
         }
-        return null;
+        return $openingHours;
+
+
     }
 
     private function getReviews($business) {
+        if( !isset($business['result']['reviews'])) {
+            return null;
+        }
         $reviews = [];
         foreach($business['result']['reviews'] as $review_data) {
             $review = new ExternalBusinessReview();
             $review->setAuthorName($review_data['author_name']);
-            $review->setAuthorUrl($review_data['author_url']);
-            $review->setProfilePhotoUrl($review_data['profile_photo_url']);
+            $review->setAuthorUrl( isset($review_data['author_url']) ? $review_data['author_url'] : null);
+            $review->setProfilePhotoUrl( isset($review_data['profile_photo_url']) ? $review_data['profile_photo_url'] : null);
             $review->setRating($review_data['rating']);
             $review->setText($review_data['text']);
             $review->setTime($review_data['time']);
@@ -122,14 +140,15 @@ class GooglePlacesService
 
     private function getAddressComponent($result, $component)
     {
-        if(isset($result['result']['address_components'])) {
-            foreach( $result['result']['address_components'] as $address_component) {
-                if(in_array($component, $address_component['types'])) {
-                    return $address_component['short_name'];
-                }
+        if(!isset($result['result']['address_components'])) {
+            return null;
+        }
+        foreach( $result['result']['address_components'] as $address_component) {
+            if(in_array($component, $address_component['types'])) {
+                return $address_component['short_name'];
             }
         }
-        return null;
+
     }
 
     private function getFormattedAddress($result) {
@@ -151,16 +170,21 @@ class GooglePlacesService
     }
 
     private function getPhotos($result) {
-        $photos = [];
-        foreach($result['result']['photos'] as $photo) {
-            $photo_reference = $photo['photo_reference'];
-            $photos[] = "//maps.googleapis.com/maps/api/place/photo?photoreference=$photo_reference&key=$this->key";
+        if(isset($result['result']['photos'])) {
+            $photos = [];
+            foreach($result['result']['photos'] as $photo) {
+                $photo_reference = $photo['photo_reference'];
+                $photos[] = "//maps.googleapis.com/maps/api/place/photo?photoreference=$photo_reference&key=$this->key";
+            }
+            return $photos;
         }
-        return $photos;
+        return null;
     }
 
-    private function getWebsite($result) {
-        return isset($result['result']['website']) ? $result['result']['website'] : null;
+    private function getOpenNow($result) {
+        return isset($result['result']['opening_hours'])
+            && isset($result['result']['opening_hours']['open_now']) ?
+            $result['result']['opening_hours']['open_now'] : null;
     }
 
 }

@@ -23,6 +23,11 @@ class ExternalBusiness
     private $name;
 
     /**
+     * @var string
+     */
+    private $url;
+
+    /**
      * @var array
      */
     private $opening_hours;
@@ -399,6 +404,22 @@ class ExternalBusiness
     public function setPhotos($photos)
     {
         $this->photos = $photos;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
     }
 
     /**

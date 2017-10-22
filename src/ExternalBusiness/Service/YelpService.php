@@ -25,18 +25,21 @@ class YelpService
         0 => 'Sunday',
     ];
 
-    public function __construct()
+    private $include_reviews;
+
+    public function __construct($client_id, $client_secret, $include_reviews = FALSE)
     {
         if($this->client == null) {
             $provider = new Yelp([
-                'clientId'          => 'EDzcj0m7qWXlWWG0igfPjQ',
-                'clientSecret'      => '9cAPlhbunfcsrgcR52Y5ARbAl7Qq3COrrGbvAxEQRYdveg6nKttOukNItTNc8WX6'
+                'clientId'          => $client_id,
+                'clientSecret'      => $client_secret
             ]);
             $this->client = new Client(array(
                 'accessToken' => (string) $provider->getAccessToken('client_credentials'),
                 'apiHost' => 'api.yelp.com'
             ));
         }
+        $this->include_reviews = $include_reviews;
     }
 
     public function getProviderName()
@@ -82,18 +85,19 @@ class YelpService
             $business->setName($result->name);
             $business->setOpeningHours( $this->getOpeningHours($result));
             $business->setOpenNow( isset($result->hours) ? $result->hours[0]->is_open_now : null);
-            $business->setReviews($this->getReviews($uuid));
+            $business->setReviews( $this->include_reviews ? $this->getReviews($uuid) : null);
             $business->setRating($this->getRating($business->getReviews()));
             $business->setState($result->location->state);
             $business->setCity($result->location->city);
             $business->setFormattedAddress($result->location->display_address);
-            $business->setCategories($result->categories);
+            $business->setCategories((array) $result->categories);
             $business->setPhone($result->phone);
             $business->setDisplayPhone($result->display_phone);
             $business->setLatitude($result->coordinates->latitude);
             $business->setLongitude($result->coordinates->longitude);
             $business->setPrice(isset($result->price) ? strlen($result->price) * 5 / 4 : null);
             $business->setPhotos($this->getPhotos($result));
+            $business->setUrl($this->url);
 //            $business->setOpenNow(!$result->is_closed);
 
             return $business;
