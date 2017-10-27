@@ -1,9 +1,19 @@
 {
     "name": "codestream/external-business",
     "type": "library",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:rmassoud/yelp-php.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:rmassoud/google-places-api.git"
+        }
+    ],
     "require": {
         "php": ">=5.3.0",
-        "skagarwal/google-places-api": "^1.1",
+        "skagarwal/google-places-api": "dev-master",
         "stevenmaguire/yelp-php": "^2.0",
         "stevenmaguire/oauth2-yelp": "^0.1.0"
     },

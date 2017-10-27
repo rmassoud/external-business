@@ -37,7 +37,7 @@ class YelpService
             $this->client = new Client(array(
                 'accessToken' => (string) $provider->getAccessToken('client_credentials'),
                 'apiHost' => 'api.yelp.com'
-            ));
+            ), $proxy);
         }
         $this->include_reviews = $include_reviews;
     }
