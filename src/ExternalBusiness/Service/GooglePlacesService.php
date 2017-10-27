@@ -26,13 +26,13 @@ class GooglePlacesService
     private $key = 'AIzaSyAocvDCgiUaD9078kspYreZf0aMQSY9A3E';
     private $include_reviews;
 
-    public function __construct($key, $include_reviews = FALSE)
+    public function __construct($key, $proxy = FALSE, $include_reviews = FALSE)
     {
         $this->key = $key;
         $this->include_reviews = $include_reviews;
 
         if($this->google_places == null) {
-            $this->google_places = new PlacesApi($this->key);
+            $this->google_places = new PlacesApi($this->key, $proxy);
         }
     }
 

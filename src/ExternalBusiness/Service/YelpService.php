@@ -27,7 +27,7 @@ class YelpService
 
     private $include_reviews;
 
-    public function __construct($client_id, $client_secret, $include_reviews = FALSE)
+    public function __construct($client_id, $client_secret, $proxy = FALSE, $include_reviews = FALSE)
     {
         if($this->client == null) {
             $provider = new Yelp([
