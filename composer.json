@@ -4,16 +4,16 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:rmassoud/yelp-php.git"
+            "url": "git@github.com:rmassoud/google-places-api.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:rmassoud/google-places-api.git"
+            "url": "git@github.com:rmassoud/yelp-php.git"
         }
     ],
     "require": {
         "php": ">=5.3.0",
-        "skagarwal/google-places-api": "dev-master",
+        "skagarwal/google-places-api": "^1.1",
         "stevenmaguire/yelp-php": "^2.0",
         "stevenmaguire/oauth2-yelp": "^0.1.0"
     },
