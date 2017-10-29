@@ -32,7 +32,8 @@ class YelpService
         if($this->client == null) {
             $provider = new Yelp([
                 'clientId'          => $client_id,
-                'clientSecret'      => $client_secret
+                'clientSecret'      => $client_secret,
+                'proxy' => $proxy
             ]);
             $this->client = new Client(array(
                 'accessToken' => (string) $provider->getAccessToken('client_credentials'),
