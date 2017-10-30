@@ -89,6 +89,11 @@ class GooglePlacesService
                 $business->setPhotos($this->getPhotos($result));
                 $business->setUrl($result['result']['url']);
 
+                $business->setImage(
+                    $business->getPhotos() ? $business->getPhotos()[0] : NULL
+                );
+                
+
                 return $business;
             }
         } catch (ContextErrorException $e) {

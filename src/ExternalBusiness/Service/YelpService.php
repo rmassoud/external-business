@@ -99,6 +99,7 @@ class YelpService
             $business->setPrice(isset($result->price) ? strlen($result->price) * 5 / 4 : null);
             $business->setPhotos($this->getPhotos($result));
             $business->setUrl($this->url);
+            $business->setImage($this->image_url);
 //            $business->setOpenNow(!$result->is_closed);
 
             return $business;

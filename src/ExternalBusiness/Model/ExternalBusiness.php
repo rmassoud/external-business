@@ -103,6 +103,11 @@ class ExternalBusiness
     private $photos;
 
     /**
+     * @var string
+     */
+    private $image;
+
+    /**
      * @return string
      */
     public function getId()
@@ -420,6 +425,22 @@ class ExternalBusiness
     public function setUrl($url)
     {
         $this->url = $url;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
     }
 
     /**
