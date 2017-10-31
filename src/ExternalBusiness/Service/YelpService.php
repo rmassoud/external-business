@@ -87,6 +87,7 @@ class YelpService
             $business->setOpeningHours( $this->getOpeningHours($result));
             $business->setOpenNow( isset($result->hours) ? $result->hours[0]->is_open_now : null);
             $business->setReviews( $this->include_reviews ? $this->getReviews($uuid) : null);
+            $business->setReviewsNumber(isset($result->review_count) ? $result->review_coun : null);
             $business->setRating($this->getRating($business->getReviews()));
             $business->setState($result->location->state);
             $business->setCity($result->location->city);

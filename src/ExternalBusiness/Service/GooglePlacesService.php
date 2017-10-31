@@ -68,6 +68,7 @@ class GooglePlacesService
                 $business->setOpeningHours( $this->getOpeningHours($result));
                 $business->setOpenNow($this->getOpenNow($result));
                 $business->setReviews( $this->include_reviews ? $this->getReviews($result) : null);
+                $business->setReviewsNumber(count($this->getReviews($result)));
                 $business->setState($this->getAddressComponent($result, 'administrative_area_level_1'));
                 $business->setCity($this->getAddressComponent($result, 'locality'));
                 $business->setFormattedAddress( $this->getFormattedAddress($result) );

@@ -108,6 +108,11 @@ class ExternalBusiness
     private $image;
 
     /**
+     * @var integer
+     */
+    private $reviews_number;
+
+    /**
      * @return string
      */
     public function getId()
@@ -441,6 +446,22 @@ class ExternalBusiness
     public function setImage($image)
     {
         $this->image = $image;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReviewsNumber()
+    {
+        return $this->reviews_number;
+    }
+
+    /**
+     * @param mixed $reviews_number
+     */
+    public function setReviewsNumber($reviews_number)
+    {
+        $this->reviews_number = $reviews_number;
     }
 
     /**
