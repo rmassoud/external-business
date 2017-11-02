@@ -113,6 +113,21 @@ class ExternalBusiness
     private $reviews_number;
 
     /**
+     * @var string
+     */
+    private $postcode;
+
+    /**
+     * @var string
+     */
+    private $locality;
+
+    /**
+     * @var string
+     */
+    private $street_address;
+
+    /**
      * @return string
      */
     public function getId()
@@ -462,6 +477,54 @@ class ExternalBusiness
     public function setReviewsNumber($reviews_number)
     {
         $this->reviews_number = $reviews_number;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPostcode()
+    {
+        return $this->postcode;
+    }
+
+    /**
+     * @param string $postcode
+     */
+    public function setPostcode($postcode)
+    {
+        $this->postcode = $postcode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocality()
+    {
+        return $this->locality;
+    }
+
+    /**
+     * @param mixed $locality
+     */
+    public function setLocality($locality)
+    {
+        $this->locality = $locality;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStreetAddress()
+    {
+        return $this->street_address;
+    }
+
+    /**
+     * @param mixed $street_address
+     */
+    public function setStreetAddress($street_address)
+    {
+        $this->street_address = $street_address;
     }
 
     /**

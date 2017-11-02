@@ -23,7 +23,7 @@ class GooglePlacesService
 
     private $google_places;
 
-    private $key = 'AIzaSyAocvDCgiUaD9078kspYreZf0aMQSY9A3E';
+    private $key;
     private $include_reviews;
 
     public function __construct($key, $proxy = FALSE, $include_reviews = FALSE)
@@ -93,7 +93,9 @@ class GooglePlacesService
                 $business->setImage(
                     $business->getPhotos() ? $business->getPhotos()[0] : NULL
                 );
-                
+
+                $business->setLocality($this->getAddressComponent($result, 'locality'));
+                $business->setPostcode($this->getAddressComponent($result, 'postal_code'));
 
                 return $business;
             }
@@ -112,7 +114,7 @@ class GooglePlacesService
                 'day_name' => $day,
             ];
             foreach( $periods = $result['result']['opening_hours']['periods'] as $key => $period ) {
-                if( isset($period['close']) && isset($period['open_time']) && $period['close']['day'] == $dayIndex) {
+                if( isset($period['open']) && isset($period['close']) && $period['open']['day'] == $dayIndex) {
                     $openingHours[$dayIndex]['periods'][] = [
                         'open_time' => date_format(date_create_from_format ("Hi", $period['open']['time']), 'h:ia'),
                         'close_time' => date_format(date_create_from_format ("Hi", $period['close']['time']), 'h:ia'),

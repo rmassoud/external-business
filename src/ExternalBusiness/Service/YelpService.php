@@ -87,7 +87,7 @@ class YelpService
             $business->setOpeningHours( $this->getOpeningHours($result));
             $business->setOpenNow( isset($result->hours) ? $result->hours[0]->is_open_now : null);
             $business->setReviews( $this->include_reviews ? $this->getReviews($uuid) : null);
-            $business->setReviewsNumber(isset($result->review_count) ? $result->review_coun : null);
+            $business->setReviewsNumber(isset($result->review_count) ? $result->review_count : null);
             $business->setRating($this->getRating($business->getReviews()));
             $business->setState($result->location->state);
             $business->setCity($result->location->city);
@@ -99,9 +99,13 @@ class YelpService
             $business->setLongitude($result->coordinates->longitude);
             $business->setPrice(isset($result->price) ? strlen($result->price) * 5 / 4 : null);
             $business->setPhotos($this->getPhotos($result));
-            $business->setUrl($this->url);
-            $business->setImage($this->image_url);
+            $business->setUrl( isset($this->url) ? $this->url : NULL );
+            $business->setImage( isset($this->image_url) ? $this->image_url : NULL);
 //            $business->setOpenNow(!$result->is_closed);
+
+            $business->setLocality($result->location->city);
+            $business->setPostcode($result->location->zip_code);
+            $business->setStreetAddress($result->location->address1);
 
             return $business;
 
