@@ -15,7 +15,8 @@
         "php": ">=5.3.0",
         "skagarwal/google-places-api": "^1.1",
         "stevenmaguire/yelp-php": "^2.0",
-        "stevenmaguire/oauth2-yelp": "^0.1.0"
+        "stevenmaguire/oauth2-yelp": "^0.1.0",
+        "kevinrob/guzzle-cache-middleware": "dev-master"
     },
     "authors": [
         {

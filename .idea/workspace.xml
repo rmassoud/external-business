@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="02dadfd5-939c-4f27-a2d2-581519f4d81f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ExternalBusiness/Model/ExternalBusiness.php" afterPath="$PROJECT_DIR$/src/ExternalBusiness/Model/ExternalBusiness.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ExternalBusiness/Service/GooglePlacesService.php" afterPath="$PROJECT_DIR$/src/ExternalBusiness/Service/GooglePlacesService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ExternalBusiness/Service/YelpService.php" afterPath="$PROJECT_DIR$/src/ExternalBusiness/Service/YelpService.php" />
-    </list>
+    <list default="true" id="02dadfd5-939c-4f27-a2d2-581519f4d81f" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +14,7 @@
       <file leaf-file-name="GooglePlacesService.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ExternalBusiness/Service/GooglePlacesService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-389">
+            <state relative-caret-position="375">
               <caret line="25" column="16" lean-forward="false" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
               <folding>
                 <element signature="e#43#87#0#PHP" expanded="true" />
@@ -31,7 +26,7 @@
       <file leaf-file-name="YelpService.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ExternalBusiness/Service/YelpService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1575">
+            <state relative-caret-position="1515">
               <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="107" selection-end-column="69" />
               <folding>
                 <element signature="e#43#87#0#PHP" expanded="true" />
@@ -112,6 +107,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -133,27 +129,12 @@
             <path>
               <item name="external-business" type="b2602c69:ProjectViewProjectNode" />
               <item name="external-business" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ExternalBusiness" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Model" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="external-business" type="b2602c69:ProjectViewProjectNode" />
-              <item name="external-business" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ExternalBusiness" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Service" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="external-business" type="b2602c69:ProjectViewProjectNode" />
-              <item name="external-business" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="tests" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -196,11 +177,12 @@
       <workItem from="1509503921662" duration="763000" />
       <workItem from="1509575652974" duration="8000" />
       <workItem from="1509575781648" duration="600000" />
+      <workItem from="1509671173732" duration="7000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12632000" />
+    <option name="totallyTimeSpent" value="12639000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1063" y="-1051" width="1618" height="1010" extended-state="0" />
@@ -458,7 +440,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ExternalBusiness/Service/YelpService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1575">
+        <state relative-caret-position="1515">
           <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="107" selection-end-column="69" />
           <folding>
             <element signature="e#43#87#0#PHP" expanded="true" />
@@ -476,7 +458,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ExternalBusiness/Service/GooglePlacesService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-389">
+        <state relative-caret-position="375">
           <caret line="25" column="16" lean-forward="false" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
           <folding>
             <element signature="e#43#87#0#PHP" expanded="true" />

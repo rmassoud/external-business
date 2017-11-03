@@ -27,7 +27,7 @@ class YelpService
 
     private $include_reviews;
 
-    public function __construct($client_id, $client_secret, $proxy = FALSE, $include_reviews = FALSE)
+    public function __construct($client_id, $client_secret, $proxy = FALSE, $include_reviews = FALSE, $stack = FALSE)
     {
         if($this->client == null) {
             $provider = new Yelp([
@@ -35,10 +35,14 @@ class YelpService
                 'clientSecret'      => $client_secret,
                 'proxy' => $proxy
             ]);
-            $this->client = new Client(array(
-                'accessToken' => (string) $provider->getAccessToken('client_credentials'),
-                'apiHost' => 'api.yelp.com'
-            ), $proxy);
+            $this->client = new Client(
+                [
+                    'accessToken' => (string) $provider->getAccessToken('client_credentials'),
+                    'apiHost' => 'api.yelp.com'
+                ],
+                $proxy,
+                $stack
+            );
         }
         $this->include_reviews = $include_reviews;
     }
